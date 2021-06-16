@@ -11,11 +11,11 @@ from subprocess import call
 #
 #       Topology:
 #
-#   h1              h3
-#     \            /
-#      s1 - s2 - s3
-#     /            \
-#   h2              h4
+#   h1          h3
+#     \        /
+#      s1 - s2
+#     /        \
+#   h2          h4
 #
 
 
