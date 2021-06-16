@@ -55,7 +55,7 @@ def myNetwork():
     for controller in net.controllers:
         controller.start()
     
-    info("Starting Switches....\m")
+    info("Starting Switches....\n")
     net.get('s1').start([])
     net.get('s2').start([])
     net.get('s3').start([])

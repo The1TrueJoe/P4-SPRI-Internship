@@ -28,7 +28,7 @@ def myNetwork():
     for controller in net.controllers:
         controller.start()
     
-    info("Starting Switches....\m")
+    info("Starting Switches....\n")
     
     info("Configuring\n")
     
