@@ -24,19 +24,19 @@ def myNetwork():
     # Setup mininet
     net = Mininet(topo = None, build = False, ipBase = '10.0.0.0/8')
     
-    info("*** Controllers ***\n")
+    info("*** Creating Controllers ***\n")
     
-    info("*** Switches ***\n")
+    info("*** Creating Switches ***\n")
     s1 = net.addSwitch('s1', cls = OVSKernelSwitch, failMode = 'standalone')
     s2 = net.addSwitch('s2', cls = OVSKernelSwitch, failMode = 'standalone')
     
-    info("*** Hosts ***\n")
+    info("*** Creating Hosts ***\n")
     h1 = net.addHost('h1', cls = Host, ip = '10.0.0.1', defaultRoute = None)
     h2 = net.addHost('h2', cls = Host, ip = '10.0.0.2', defaultRoute = None)
     h3 = net.addHost('h3', cls = Host, ip = '10.0.0.3', defaultRoute = None)
     h4 = net.addHost('h4', cls = Host, ip = '10.0.0.4', defaultRoute = None)
     
-    info("*** Links ***\n")
+    info("*** Creating Links ***\n")
     # Switch to Switch Links
     net.addLink(s1, s2)
     
@@ -57,9 +57,8 @@ def myNetwork():
     net.get('s1').start([])
     net.get('s2').start([])
     
-    info("Configuring\n")
-    h1.cmd("ifconfig")
-    
+    info("Beginning Configuration\n")
+
     CLI(net)
     net.stop()
     
