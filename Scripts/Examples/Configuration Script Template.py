@@ -13,8 +13,8 @@ def main():
 
 
 # Sends command to a host
-# Device (ex. h1 = host1, r1 = router1)
-# Command (Command to send)
+# device (ex. h1 = host1, r1 = router1)
+# command (Command to send)
 def sendCommand(device, command, path_required):
     if (path_required == True):
         command = command_path + " " + device + " \"" + command + "\""
@@ -27,30 +27,30 @@ def sendCommand(device, command, path_required):
     os.system(command)
 
 # Sends commands to multiple hosts
-# Type (Format of host/router name ex. h = host, r = router)
+# type (Format of host/router name ex. h = host, r = router)
 # device_count (Number of devices to command)
-# Command (Command to send)
+# command (Command to send)
 def sendCommandToMultiple(type, device_count, command, path_required):
     for i in range (0, device_count):
         sendCommand(type + str(i+1), command, path_required)
 
 # Sends commands to hosts in a range
-# Type (Format of host/router name ex. h = host, r = router)
+# type (Format of host/router name ex. h = host, r = router)
 # start && end (Range of devices to command)
-# Command (Command to send)
+# command (Command to send)
 def sendCommandToMultipleRange(type, start, end, command, path_required):
     for i in range (start, end):
         sendCommand(type + str(i+1), command, path_required)
 
 # Adjusts the buffer sizes for mtiple hosts
 # device_count (Number of devices to command)
-# Command (Command to send)
+# command (Command to send)
 def adjustAllBuffers(type, device_count, minBuffer, defaultBuffer, maxBuffer):
     sendCommandToMultiple(type, device_count, "sysctl -w net.ipv4.tcp_rmem=\'" + str(minBuffer) + " " + str(defaultBuffer) + " " + str(maxBuffer) + "\'", True)
     sendCommandToMultiple(type, device_count, "sysctl -w net.ipv4.tcp_wmem=\'" + str(minBuffer) + " " + str(defaultBuffer) + " " + str(maxBuffer) + "\'", True)
 
 # Opens IPerf3 as a server on multiple hosts
-# Type (Format of host name ex. h1 = host 1)
+# type (Format of host name ex. h1 = host 1)
 # device_count (Number of devices to command)
 def runIPerf3Server(type, start, end):
     sendCommandToMultipleRange(type, start, end, 'iperf3 -s', True)
