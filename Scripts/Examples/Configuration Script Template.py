@@ -71,6 +71,14 @@ def addQDiscipline(device, port, handle, discipline):
 def addDelays(device, port, handle, delay):
     addQDiscipline(device, port, handle, "netem delay " + delay)
 
+# Adds a delay to a specific interface
+# type (Format of switch name ex. s1 = switch 1)
+# port the port to use (ex. eth1) 
+# handle (The handle for the discipline)
+# loss (The latency to add to the port)
+def addLoss(device, port, handle, loss):
+    addQDiscipline(device, port, handle, "netem loss " + loss)
+
 # Uses Transmission Control with Queuing Disciplines
 # type (Format of switch name ex. s1 = switch 1)
 # port the port to use (ex. eth1) 
@@ -80,5 +88,12 @@ def addDelays(device, port, handle, delay):
 # limit (Limit in bytes)
 def addTBF(device, port, handle, rate, burst, limit):
     addQDiscipline(device, port, handle, "tbf rate " + rate + " burst " + str(burst) + " limit " + str(limit))
+
+# Uses ifconfig to adjust the MTU at a port
+# device (Format of switch name ex. s1 = switch 1)
+# port the port to use (ex. eth1) 
+# MTU (The new MTU)
+def adjustMTU(device, port, mtu):
+    sendCommand(device, "ifconfig " + device + "-" + port + " mtu " + str(mtu), True)
 
 main()
