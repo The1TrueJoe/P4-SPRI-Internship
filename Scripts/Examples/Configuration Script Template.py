@@ -3,10 +3,7 @@ import os
 
 command_path = '/home/admin/mininet/util/m'  # Script to send commands to hosts and routers
 
-controllers = 0 # Number of controllers
-hosts       = 4 # Number of hosts
-switches    = 0 # Number of Switches
-routers     = 0 # Number of routers
+hosts = 4 # Number of hosts
 
 def main():
     adjustAllBuffers("h", hosts, 10240, 87380, 131072000)
