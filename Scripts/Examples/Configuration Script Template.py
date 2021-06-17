@@ -40,7 +40,7 @@ def sendCommandToMultipleArray(hosts, command, path_required):
 
 # Creates and array of hosts
 # Output ex. getRange('h', 4) -> ['h1', 'h2', 'h3', 'h4']
-# name_formate (Format that the host names are created ex. h -> h1, h2)
+# name_format (Format that the host names are created ex. h -> h1, h2)
 # host_count (Number of hosts)
 def getRange(name_format, host_count):
     hosts = []

@@ -15,6 +15,10 @@ def main():
 # device (ex. h1 = host1, r1 = router1)
 # command (Command to send)
 def sendCommand(device, command, path_required, run_as_background):
+    if (isinstance(device, list)):
+        sendCommandToMultipleArray(device, command, path_required)
+        return
+
     if (run_as_background == True):
         command = command + " &"
     
@@ -28,21 +32,24 @@ def sendCommand(device, command, path_required, run_as_background):
     print("Sending " + device + " command: " + command)
     os.system(command)
 
-# Sends commands to multiple hosts
-# type (Format of host/router name ex. h = host, r = router)
-# device_count (Number of devices to command)
-# command (Command to send)
-def sendCommandToMultiple(type, device_count, command, path_required, run_as_background):
-    for i in range (0, device_count):
-        sendCommand(type + str(i+1), command, path_required, run_as_background)
-
 # Sends commands to hosts in a range
+# Does not need to be used normally
 # type (Format of host/router name ex. h = host, r = router)
 # start && end (Range of devices to command)
 # command (Command to send)
 def sendCommandToMultipleArray(hosts, command, path_required, run_as_background):
     for host in hosts:
         sendCommand(host, command, path_required, run_as_background)
+
+# Creates and array of hosts
+# Output ex. getRange('h', 4) -> ['h1', 'h2', 'h3', 'h4']
+# name_format (Format that the host names are created ex. h -> h1, h2)
+# host_count (Number of hosts)
+def getRange(name_format, host_count):
+    hosts = []
+    for i in range(0, host_count):
+        hosts.append(name_format + str(i+1))
+    return hosts
 
 ## IPerf testing
 
