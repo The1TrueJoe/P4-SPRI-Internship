@@ -7,7 +7,6 @@ def main():
     runIPerf3Server(["h3", "h4"])
     runIPerf3ClientArg(["h1"], "10.0.0.3", "-J > h1.json")
     runIPerf3ClientArg(["h2"], "10.0.0.4", "-J > h2.json")
-    reboot()
 
 ## Commands
 
@@ -93,8 +92,5 @@ def pingArg(hosts_from, ip_to, arguments):
 def ping(hosts_from, ip_to):
     pingArg(hosts_from, ip_to, "")
 
-
-def reboot(hosts):
-    sendCommandToMultipleArray(hosts, "reboot", True, True)
 
 main()
