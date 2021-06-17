@@ -1,4 +1,3 @@
-import subprocess
 import os
 
 command_path = '/home/admin/mininet/util/m'  # Script to send commands to hosts and routers
@@ -52,12 +51,6 @@ def sendCommandToMultipleRange(type, start, end, command, path_required):
 def adjustAllBuffers(type, device_count, minBuffer, defaultBuffer, maxBuffer):
     sendCommandToMultiple(type, device_count, "sysctl -w net.ipv4.tcp_rmem=\'" + str(minBuffer) + " " + str(defaultBuffer) + " " + str(maxBuffer) + "\'", True)
     sendCommandToMultiple(type, device_count, "sysctl -w net.ipv4.tcp_wmem=\'" + str(minBuffer) + " " + str(defaultBuffer) + " " + str(maxBuffer) + "\'", True)
-
-# Opens IPerf3 as a server on multiple hosts
-# device (Format of host name ex. h1 = host 1)
-# device_count (Number of devices to command)
-def runIPerf3Server(type, start, end):
-    sendCommandToMultipleRange(type, start, end, 'iperf3 -s', True)
     
 # Uses Transmission Control with Queuing Disciplines
 # device (Format of switch name ex. s1 = switch 1)
