@@ -112,7 +112,7 @@ def createLink(side1, side2):
         length = s1len
         print("Found unequal array length")
 
-    print("Creating " + lengths + " links")
+    print("Creating " + length + " links")
     for i in range(0, length):
         net.addLink(side1[i], side2[i])
 
