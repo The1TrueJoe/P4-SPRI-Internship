@@ -56,21 +56,7 @@ parser MyParser(packet_in packet,
                 inout standard_metadata_t standard_metadata) {
 
     state start {
-        transition parse_ethernet;
-
-    }
-
-    state parse_ethernet {
-        packet.extract(hdr.ethernet);
-        transition select(hdr.ethernet.etherType) {
-            TYPE_IPV4: parse_ipv4;
-            default: accept;
-
-        }
-    }
-
-    state parse_ipv4 {
-        packet.extract(hdr.ipv4);
+        /* TODO: add parser logic */
         transition accept;
 
     }
@@ -101,12 +87,8 @@ control MyIngress(inout headers hdr,
     }
     
     action ipv4_forward(macAddr_t dstAddr, egressSpec_t port) {
-        standard_metadata.egressSpec_t = port;
+        /* TODO: fill out code in action body */
 
-        hdr.ethernet.srcAddr = hdr.ethernet.dstAddr;    // Set source mac as the switch's mac
-        hdr.ethernet.dstAddr = dstAddr;                 // Set destination mac as the orignal destination mac
-
-        hdr.ipv4.ttl = hdr.ipv4.ttl - 1;                // Decrement TTL
     }
     
     table ipv4_lpm {
@@ -128,10 +110,11 @@ control MyIngress(inout headers hdr,
     }
     
     apply {
-        if (hdr.ipv4.isValid()) {
-            ipv4_lpm.apply();
+        /* TODO: fix ingress control logic
+         *  - ipv4_lpm should be applied only when IPv4 header is valid
+         */
+        ipv4_lpm.apply();
 
-        }
     }
 }
 
