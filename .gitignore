@@ -1,0 +1,38 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipe
+.project
+.classpath
+.settings/
+
+# Output dirs
+out/
+target/
+classes/
+bin/
+build/
+docs/
+.gradle/
+sshj.jar
+
+# MacOS X
+.DS_Store
+
+# VSCode
+.metals/
+
+# VSCode Counter
+.VSCodeCounter/
+
+/bin/
+build
+.settings/
+/.gradle/
+/gradle/
+/gradlew
+/gradlew.bat
+.gitmodules
